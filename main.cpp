@@ -36,8 +36,11 @@ int main(int, char ** argv) {
 
     // Get the list of files
     vector<string> fileNames = glob("*.dpx");
-    cout << "There is " << fileNames.size() << " dpx files in current directory.";
+    cout << "There is " << fileNames.size() << " dpx files in current directory. ";
     cout << "The program will visit each file to calculate MaxCLL and MaxFALL." << endl;
+    cout << "Note that, program requires all the files in 10bit PQ values, packed by dpx 0-1023 range method-A filling." << endl;
+    cout << "(Press CTRL-C to stop running.)" << endl;
+    cout << "====" << endl << "====" << endl; 
 
     // for each file, visit to return the values
     for (string file : fileNames) {
@@ -266,6 +269,7 @@ pair<double,double> calculateMaxAndMeanNits(string fileName) {
     }
 
     pair<double,double> result = make_pair(maxValue, sum / countPixel);
+    delete[] buffer;
     return result;
 };
 
